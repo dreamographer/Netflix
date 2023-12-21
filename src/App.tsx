@@ -1,14 +1,24 @@
 import { Route, Routes } from "react-router-dom"
 import  Navbar  from "./components/Navbar"
 import Home from "./Pages/Home"
+import Login from "./Pages/Login"
+import Account from "./Pages/Account"
+import SignUp from "./Pages/SignUp"
+import { AuthContextProvider } from "./context/AuthContext"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 const App = () => {
   return (
     <>
-    <Navbar></Navbar>
-    <Routes>
+    <AuthContextProvider>
+      <Navbar />
+      <Routes>
       <Route path='/' element={<Home/>}> </Route>
-    </Routes>
+      <Route path='/login' element={<Login/>}> </Route>
+      <Route path='/signup' element={<SignUp/>}> </Route>
+          <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute> }> </Route>
+      </Routes>
+      </AuthContextProvider>
     </>
     )
 }
