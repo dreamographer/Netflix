@@ -13,6 +13,7 @@ type AuthContextType = {
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setpassword] = useState('')
+  const [error, setError] = useState('')
   const navigate=useNavigate()
 
   const auth = UserAuth();
@@ -20,14 +21,15 @@ const SignUp = () => {
     throw new Error("Auth context is null");
   }
   const { user, signUP }: AuthContextType = auth;
-  console.log("Auth", signUP);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       await signUP(email, password)
+      // setError('')
       navigate('/')
-    } catch (err) {
+    } catch (err:any) {
       console.log(err);
+      setError(err?.message)
 
     }
 
@@ -41,6 +43,7 @@ const SignUp = () => {
           <div className="max-width-[450px] h-[500px] sm:w-96  mx-auto bg-black/75 ">
             <div className="max-w-[320px] mx-auto  py-16">
               <h1 className="text-3xl font-bold ">SIGN UP</h1>
+              {error ? <p className='bg-red-600 h-14 text-center items-center flex p-3 rounded mt-3'>User Already exists </p> : null}
               <form onSubmit={handleSubmit} className="w-full flex flex-col py-4">
                 <input onChange={(e) => setEmail(e.target.value)} className="p-3 my-3 bg-gray-700 rounded" type="email" placeholder="Email" autoComplete="email" />
                 <input onChange={(e) => setpassword(e.target.value)} className="p-3 my-3 bg-gray-700 rounded" type="password" placeholder="Password" autoComplete="current-password" />

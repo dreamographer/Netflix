@@ -16,7 +16,7 @@ const App = () => {
       <Route path='/' element={<Home/>}> </Route>
       <Route path='/login' element={<Login/>}> </Route>
       <Route path='/signup' element={<SignUp/>}> </Route>
-          <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute> }> </Route>
+      <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute> }> </Route>
       </Routes>
       </AuthContextProvider>
     </>

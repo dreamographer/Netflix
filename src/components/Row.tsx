@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import config from "../config/TMDB"
-import Movie from "./Movie"
+import Movie from "./Movie" 
 import { MovieType } from "../types/moviesType"
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
